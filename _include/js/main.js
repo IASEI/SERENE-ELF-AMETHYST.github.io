@@ -1,7 +1,6 @@
 jQuery(function($){
 
 var BRUSHED = window.BRUSHED || {};
-
 /* ==================================================
    Mobile Navigation
 ================================================== */
@@ -264,8 +263,14 @@ BRUSHED.menu = function(){
 
 BRUSHED.goSection = function(){
 	$('#nextsection').on('click', function(){
-		$target = $($(this).attr('href')).offset().top-30;
-		
+		$target = $('#sticky-nav-id').offset().top;
+		setTimeout(function () {
+			console.log(parseFloat($target),parseFloat($target)+parseFloat($('body,html').scrollTop()))
+			var $arrow = $('#back-to-top');
+			$('#home-slider').hide();
+			$arrow.css('display', 'block');
+		},800)
+		//$('#sticky-nav-id').animate({height : $target}, 750, 'easeOutExpo');
 		$('body, html').animate({scrollTop : $target}, 750, 'easeOutExpo');
 		return false;
 	});
@@ -278,7 +283,6 @@ BRUSHED.goSection = function(){
 BRUSHED.goUp = function(){
 	$('#goUp').on('click', function(){
 		$target = $($(this).attr('href')).offset().top-30;
-		
 		$('body, html').animate({scrollTop : $target}, 750, 'easeOutExpo');
 		return false;
 	});
@@ -294,9 +298,14 @@ BRUSHED.scrollToTop = function(){
 		didScroll = false;
 
 	var $arrow = $('#back-to-top');
-
 	$arrow.click(function(e) {
+		$('#home-slider').show();
+		var target = $('#sticky-nav-id').offset().top;
+		$('body,html').scrollTop(parseFloat(target)+parseFloat($('body,html').scrollTop()))
 		$('body,html').animate({ scrollTop: "0" }, 750, 'easeOutExpo' );
+		setTimeout(function () {
+			$arrow.css('display', 'none');
+		},700)
 		e.preventDefault();
 	})
 
@@ -304,17 +313,18 @@ BRUSHED.scrollToTop = function(){
 		didScroll = true;
 	});
 
-	setInterval(function() {
-		if( didScroll ) {
-			didScroll = false;
 
-			if( $(window).scrollTop() > 1000 ) {
-				$arrow.css('display', 'block');
-			} else {
-				$arrow.css('display', 'none');
-			}
-		}
-	}, 250);
+
+	// setInterval(function() {
+	// 	if( didScroll ) {
+	// 		didScroll = false;
+	// 		if( $(window).scrollTop() > 1000 ) {
+	// 			$arrow.css('display', 'block');
+	// 		} else {
+	// 			$arrow.css('display', 'none');
+	// 		}
+	// 	}
+	// }, 250);
 }
 
 /* ==================================================
