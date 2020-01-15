@@ -12,8 +12,13 @@ Version: 1.0
    Basic Styles
 ================================================== */
 
+::-webkit-scrollbar {
+    display: none;
+  }
+  
 html, body {
 	height: 100%;
+	
 }
 
 html, hmtl a{

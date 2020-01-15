@@ -1,5 +1,9 @@
 jQuery(function($){
 
+ $(document.body).css({
+   "overflow-x":"hidden",
+   "overflow-y":"hidden"
+ });
 var BRUSHED = window.BRUSHED || {};
 /* ==================================================
    Mobile Navigation
@@ -217,27 +221,27 @@ BRUSHED.contactForm = function(){
 BRUSHED.tweetFeed = function(){
 	var valueTop = -64;
 	
-    $("#ticker").tweet({
-          username: "Bluxart",
-          page: 1,
-          avatar_size: 0,
-          count: 10,
-		  template: "{text}{time}",
-		  filter: function(t){ return ! /^@\w+/.test(t.tweet_raw_text); },
-          loading_text: "loading ..."
-	}).bind("loaded", function() {
-	  var ul = $(this).find(".tweet_list");
-	  var ticker = function() {
-		setTimeout(function() {
-			ul.find('li:first').animate( {marginTop: valueTop + 'px'}, 500, 'linear', function() {
-				$(this).detach().appendTo(ul).removeAttr('style');
-			});	
-		  ticker();
-		}, 5000);
-	  };
-	  ticker();
-	});
-	
+ //    $("#ticker").tweet({
+ //          username: "Bluxart",
+ //          page: 1,
+ //          avatar_size: 0,
+ //          count: 10,
+	// 	  template: "{text}{time}",
+	// 	  filter: function(t){ return ! /^@\w+/.test(t.tweet_raw_text); },
+ //          loading_text: "loading ..."
+	// }).bind("loaded", function() {
+	//   var ul = $(this).find(".tweet_list");
+	//   var ticker = function() {
+	// 	setTimeout(function() {
+	// 		ul.find('li:first').animate( {marginTop: valueTop + 'px'}, 500, 'linear', function() {
+	// 			$(this).detach().appendTo(ul).removeAttr('style');
+	// 		});	
+	// 	  ticker();
+	// 	}, 5000);
+	//   };
+	//   ticker();
+	// });
+	// 
 }
 
 
@@ -263,6 +267,11 @@ BRUSHED.menu = function(){
 
 BRUSHED.goSection = function(){
 	$('#nextsection').on('click', function(){
+		
+		 $(document.body).css({
+		   "overflow-x":"auto",
+		   "overflow-y":"auto"
+		 });
 		$target = $('#sticky-nav-id').offset().top;
 		setTimeout(function () {
 			console.log(parseFloat($target),parseFloat($target)+parseFloat($('body,html').scrollTop()))
@@ -306,6 +315,13 @@ BRUSHED.scrollToTop = function(){
 		setTimeout(function () {
 			$arrow.css('display', 'none');
 		},700)
+		
+		setTimeout(function(){
+			 $(document.body).css({
+			   "overflow-x":"hidden",
+			   "overflow-y":"hidden"
+			 });
+		},800)
 		e.preventDefault();
 	})
 
@@ -408,22 +424,22 @@ BRUSHED.toolTip = function(){
 BRUSHED.slider();
 
 $(document).ready(function(){
-	Modernizr.load([
-	{
-		test: Modernizr.placeholder,
-		nope: '_include/js/placeholder.js', 
-		complete : function() {
-				if (!Modernizr.placeholder) {
-						Placeholders.init({
-						live: true,
-						hideOnFocus: false,
-						className: "yourClass",
-						textColor: "#999"
-						});    
-				}
-		}
-	}
-	]);
+	// Modernizr.load([
+	// {
+	// 	test: Modernizr.placeholder,
+	// 	nope: '_include/js/placeholder.js', 
+	// 	complete : function() {
+	// 			if (!Modernizr.placeholder) {
+	// 					Placeholders.init({
+	// 					live: true,
+	// 					hideOnFocus: false,
+	// 					className: "yourClass",
+	// 					textColor: "#999"
+	// 					});    
+	// 			}
+	// 	}
+	// }
+	// ]);
 	
 	// Preload the page with jPreLoader
 	$('body').jpreLoader({
