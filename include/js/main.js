@@ -290,8 +290,20 @@ BRUSHED.goSection = function(){
 
 BRUSHED.goUp = function(){
 	$('#goUp').on('click', function(){
+		var $arrow = $('#back-to-top');
 		$target = $($(this).attr('href')).offset().top-30;
-		$('body, html').animate({scrollTop : $target}, 750, 'easeOutExpo');
+		$('#home-slider').show();
+		$('body, html').animate({scrollTop : 0}, 750, 'easeOutExpo');
+		setTimeout(function () {
+			$arrow.css('display', 'none');
+		},600);
+
+		setTimeout(function(){
+			$(document.body).css({
+				"overflow-x":"hidden",
+				"overflow-y":"hidden"
+			});
+		},800);
 		return false;
 	});
 }
@@ -307,20 +319,20 @@ BRUSHED.scrollToTop = function(){
 
 	var $arrow = $('#back-to-top');
 	$arrow.click(function(e) {
-		$('#home-slider').show();
-		var target = $('#sticky-nav-id').offset().top;
-		$('body,html').scrollTop(parseFloat(target)+parseFloat($('body,html').scrollTop()))
-		$('body,html').animate({ scrollTop: "0" }, 750, 'easeOutExpo' );
-		setTimeout(function () {
-			$arrow.css('display', 'none');
-		},700)
+		//$('#home-slider').show();
+		// var target = $('#sticky-nav-id').offset().top;
+		// $('body,html').scrollTop(parseFloat(target)+parseFloat($('body,html').scrollTop()))
+		$('body,html').animate({ scrollTop: 0 }, 750, 'easeOutExpo' );
+		// setTimeout(function () {
+		// 	$arrow.css('display', 'none');
+		// },700)
 		
-		setTimeout(function(){
-			 $(document.body).css({
-			   "overflow-x":"hidden",
-			   "overflow-y":"hidden"
-			 });
-		},800)
+		// setTimeout(function(){
+		// 	 $(document.body).css({
+		// 	   "overflow-x":"hidden",
+		// 	   "overflow-y":"hidden"
+		// 	 });
+		// },800)
 		e.preventDefault();
 	})
 
