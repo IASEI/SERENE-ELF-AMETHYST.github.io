@@ -37,7 +37,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
         var $sticky, shouldBeStuck;
         $sticky = $(this).children(':first');
         shouldBeStuck = direction === 'down' || direction === 'right';
-        $sticky.toggleClass(options.stuckClass, shouldBeStuck);
+        $sticky.toggleClass(options.stuckClass, false);
         if (originalHandler != null) {
           return originalHandler.call(this, direction);
         }
